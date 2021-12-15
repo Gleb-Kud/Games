@@ -21,6 +21,7 @@ def click(event):
             if picture_id == id_table[i][j]:
                 if (j + 1, i + 1) not in active_images_set:
                     root.destroy()
+                    print("Olete jõudnud", str(size - 2) + ". levelile")  #
                 if (j + 1, i + 1) in active_images_set:
                     clicked_correctly.add((j + 1, i + 1))
                     y = j * (width / size) + weird_thing         #if some more difficulty wanted then swap x and y
@@ -32,6 +33,7 @@ def click(event):
                             clicked_correctly = set()
                             size += 1
                             canvas.delete("all")
+                            #print("Level", str(size))
                             canvas_function()
                     break
                 break
