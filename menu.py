@@ -77,6 +77,7 @@ def run_sequence():
         
 
     def start():
+        input_sequence = []
         button_start.destroy()
         game()
 
@@ -327,23 +328,21 @@ def exit_():
 
 #=======================================================================================    
 
-button1 = Button(mainframe, text='Jada mälu', width=15, command=run_sequence)
-button2 = Button(mainframe, text='Reaktsioonid', width=15, command=run_reaction)
-button3 = Button(mainframe, text='Sõnaline mälu', width=15, command=run_verbal)
-button4 = Button(mainframe, text='Numbriline mälu', width=15, command=run_number)
-button5 = Button(mainframe, text='Ahvi test', width=15, command=run_chimp)
-button6 = Button(mainframe, text='Visuaalne mälu', width=15, command=run_visual)
-button_exit = Button(mainframe, text='Exit', width=15, command=exit_)
+button1 = Button(mainframe, text='Jada mälu', width=15, height=2, command=run_sequence, bg='#d4e4ff', font = ('Arial', 9, 'bold'))
+button2 = Button(mainframe, text='Reaktsioonid', width=15, height=2, command=run_reaction , bg='#d4e4ff', font = ('Arial', 9, 'bold'))
+button3 = Button(mainframe, text='Sõnaline mälu', width=15, height=2, command=run_verbal, bg='#d4e4ff', font = ('Arial', 9, 'bold'))
+button4 = Button(mainframe, text='Numbriline mälu', width=15, height=2, command=run_number, bg='#d4e4ff', font = ('Arial', 9, 'bold'))
+button5 = Button(mainframe, text='Ahvi test', width=15, height=2, command=run_chimp, bg='#d4e4ff', font = ('Arial', 9, 'bold'))
+button6 = Button(mainframe, text='Visuaalne mälu', width=15, height=2, command=run_visual, bg='#d4e4ff', font = ('Arial', 9, 'bold'))
+button_exit = Button(mainframe, text='Exit', width=15, height=2, command=exit_, bg='#d4e4ff', font = ('Arial', 9, 'bold'))
 
 
-button1.grid(row=0, column=0, padx=10, pady=10)
-button2.grid(row=1, column=0, padx=10, pady=10)
-button3.grid(row=2, column=0, padx=10, pady=10)
-button4.grid(row=0, column=2, padx=10, pady=10)
-button5.grid(row=1, column=2, padx=10, pady=10)
-button6.grid(row=2, column=2, padx=10, pady=10)
-button_exit.grid(row=2, column=1, padx=10, pady=10)
+button1.grid(row=0, column=0, padx=5, pady=10)
+button2.grid(row=1, column=0, padx=5, pady=10)
+button3.grid(row=2, column=0, padx=5, pady=10)
+button4.grid(row=0, column=2, padx=5, pady=10)
+button5.grid(row=1, column=2, padx=5, pady=10)
+button6.grid(row=2, column=2, padx=5, pady=10)
+button_exit.grid(row=3, column=1, padx=5, pady=10)
 
 mainframe.mainloop()
-
-    #subprocess.run('python C:\\Users\\Kevin\\Desktop\\Progeprojekt\\Games\\sequence_memory.py', shell=True)
