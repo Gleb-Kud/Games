@@ -10,7 +10,9 @@ from threading import Thread
 
 
 mainframe = Tk()
-mainframe.title('Gleb and Kevin Games')
+mainframe.title('Menu')
+mainframe.configure(bg = "azure")
+mainframe.configure(borderwidth = 20)
 mainframe.resizable(width=False, height=False)
 #=======Sequence variables===============================================================================
 sequence = []
