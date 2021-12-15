@@ -7,8 +7,6 @@ from time import time, sleep
 import time
 
 
-
-
 mainframe = Tk()
 mainframe.title('Menu')
 mainframe.configure(bg = "azure")
@@ -137,7 +135,6 @@ def run_sequence():
     
 def run_reaction():
     
-    mainframe.withdraw()
     root = Tk()
     root.resizable(width=False, height=False)
 
