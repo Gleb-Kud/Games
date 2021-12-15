@@ -22,6 +22,10 @@ appeared_words = []
 score = 0
 #=======Reaction variables===============================================================================
 cond = True
+#=======Chimp variable=====================================================================
+j = 1
+k = 0
+how_many_numbers = 1
 #=====================================MÄNGUD=================================================
 
 def run_sequence():
@@ -285,7 +289,7 @@ def run_verbal():
     root.mainloop()
     
 #=======================================================================================
-def run_game4():
+def run_number():
     def start(root, difficulty):
         s = ttk.Style()
         s.configure('TButton', font =
@@ -388,14 +392,15 @@ def run_game4():
 
 #=======================================================================================
 
-def run_game5():
+def run_chimp():
+    global j
+    global k
+    global how_many_numbers
     j = 1
     k = 0
+    how_many_numbers = 1
 
     def register_position_of_the_click(event):
-        global k
-        global j
-        global how_many_numbers
         x, y = event.x, event.y
         if not(x in range(dict_of_coordinates[j][0] - 20, dict_of_coordinates[j][0] + 20) and y in range(dict_of_coordinates[j][1] - 20, dict_of_coordinates[j][1] + 20)):
            root.destroy()
@@ -412,12 +417,9 @@ def run_game5():
             create_canvas()
 
     dict_of_coordinates = {}
-    how_many_numbers = 1
+    
 
     def create_canvas():
-        global j
-        global root
-        global canvas
         j = 1
         root = Tk()
         root.title("Memory")
@@ -470,7 +472,7 @@ def run_game5():
     
 #=======================================================================================
 
-def run_game6():
+def run_visual():
     width = 600
     height = 600
 
@@ -583,9 +585,9 @@ def exit_():
 button1 = Button(mainframe, text='Jada mälu', width=15, command=run_sequence)
 button2 = Button(mainframe, text='Reaktsioonid', width=15, command=run_reaction)
 button3 = Button(mainframe, text='Sõnaline mälu', width=15, command=run_verbal)
-button4 = Button(mainframe, text='game4', width=15, command=run_game4)
-button5 = Button(mainframe, text='game5', width=15, command=run_game5)
-button6 = Button(mainframe, text='game6', width=15, command=run_game6)
+button4 = Button(mainframe, text='Numbriline mälu', width=15, command=run_number)
+button5 = Button(mainframe, text='Ahvi test', width=15, command=run_chimp)
+button6 = Button(mainframe, text='Visuaalne mälu', width=15, command=run_visual)
 button_exit = Button(mainframe, text='Exit', width=15, command=exit_)
 
 
