@@ -6,10 +6,16 @@ from random import*
     
     
 def start(root, difficulty):
+    s = ttk.Style()
+    s.configure('TButton', font =
+            ('Arial', 10, 'bold'),
+            foreground = 'black',
+            background = 'black')
     mainframe = ttk.Frame(root)
     mainframe.grid(column = 0, row = 0, sticky = (N, W, E, S))
     root.columnconfigure(0, weight = 1)
     root.rowconfigure(0, weight = 1)
+    
     
     time_left = 3
     while time_left > 0:
@@ -48,6 +54,7 @@ def start(root, difficulty):
                     child.destroy()
                 print('Incorrect!')
                 print("The correct was: " + string_of_numbers)
+                print("Olete jõudnud", str(how_many_numbers) + ". levelile")
                 break
             else:
                 print("Correct!")
@@ -69,23 +76,38 @@ def play():
     root.columnconfigure(0, weight = 1)
     root.rowconfigure(0, weight = 1)
     
+    
     speed = IntVar()
-    label = ttk.Label(mainframe, text = "Choose your speed").grid(column = 0, row = 0, padx=10, pady=10)
+    label = ttk.Label(mainframe, text = "Choose your speed", font = ('Arial', 10, 'bold')).grid(column = 0, row = 0, padx=10, pady=10)
     
     s_2 = ttk.Radiobutton(mainframe, text='Easy', variable = speed, value = 3).grid(column = 0, row = 1, padx=30, pady=10)
     s_1 = ttk.Radiobutton(mainframe, text='Medium', variable = speed, value = 2).grid(column = 0, row = 3, padx=30, pady=10)
     s_half = ttk.Radiobutton(mainframe, text='Hard', variable = speed, value = 1).grid(column = 0, row = 5, padx=30, pady=10)
     go = ttk.Button(mainframe, text = "Let's go!", command = lambda: [mainframe.destroy(), start(root, speed.get())]).grid(column = 1, row = 1, rowspan = 4, padx=20, pady=10, sticky = 'sn')
-    
+    s = ttk.Style()
+    s.configure('TButton', font =
+            ('Arial', 8, 'bold'),
+            foreground = 'black',
+            background = 'black')
    
 
 frame = Tk()
 frame.title("Welcome!")
 frame.geometry("300x200")
 frame.eval('tk::PlaceWindow . center')
+frame.configure(background = 'azure')
+
+style = ttk.Style()
+style.configure('TButton', font =
+            ('Arial', 20, 'bold'),
+            foreground = 'black',
+            background = 'black')
+
 
 
 button = ttk.Button(frame, text = "Play!", command = play)
 button.place(x = 50, y = 100, width = 200, height = 80)
 frame.mainloop()
+
+
 
