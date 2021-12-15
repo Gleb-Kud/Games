@@ -22,6 +22,7 @@ for word in words:
 f.close()
     
 root = Tk()
+root.resizable(width=False, height=False)
 
 def game():
     global words_str

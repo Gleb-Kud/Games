@@ -3,6 +3,7 @@ from random import randint
 
 
 root = Tk()
+root.resizable(width=False, height=False)
 sequence = []
 input_sequence = []
 level = 1
