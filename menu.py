@@ -55,9 +55,10 @@ def run_sequence():
                 button9.destroy()
                 score_lable.destroy()
                 root.update()
-                end_label = Label(root, text="Vale järjekord", padx=100, pady=10)
+                end_label = Label(root, text="Vale järjekord", padx=100, pady=10, font = ('Arial', 9, 'bold'))
                 end_label.grid(row=0, column=0)
-                exit_button = Button(root, text="Menu", padx=10, pady=10, command=exit_)
+                print("Olete jõudnud", str(level) + ". levelile")
+                exit_button = Button(root, text="Menu", padx=10, pady=10, command=exit_, font = ('Arial', 9, 'bold'))
                 exit_button.grid(row=1, column=0)
                 level = 1
         
@@ -71,7 +72,7 @@ def run_sequence():
         global sequence
         global score_lable
         
-        score_lable = Label(root, text="Level " + str(level))
+        score_lable = Label(root, text="Level " + str(level), font = ('Arial', 9, 'bold'))
         score_lable.grid(row=4, column=0, columnspan=3)
 
         choose_button = randint(1, 9)
@@ -98,7 +99,7 @@ def run_sequence():
     button8 = Button(root, command=lambda: button_press(8), padx=40, pady=40, bg="white", activebackground="gray")
     button9 = Button(root, command=lambda: button_press(9), padx=40, pady=40, bg="white", activebackground="gray")
 
-    button_start = Button(root, text="Start", command=start)
+    button_start = Button(root, text="Start!", command=start, font = ('Arial', 9, 'bold'))
 
     buttons = [button1, button2, button3, button4, button5,
                button6, button7, button8, button9]
@@ -162,9 +163,10 @@ def run_reaction():
             background_.configure(bg="#fa5c5c")
             root.update()
             react_time = (time_2 - time_1) * 1000
-            react_label = Label(root, text=str(round(react_time))+" ms")
+            react_label = Label(root, text=str(round(react_time))+" ms", font = ('Arial', 9, 'bold')) #
+            print(round(react_time, 4))  #
             react_label.grid(row=1, column=0)
-            reaction_button.configure(text="Uuesti")
+            reaction_button.configure(text="Uuesti!", font = ('Arial', 9, 'bold'))   #
             cond=False
         else:
             cond=True
@@ -173,11 +175,19 @@ def run_reaction():
         
 
 
-    background_ = Canvas(root, width=500, height=500, background='white')
+    background_ = Canvas(root, width=500, height=500, background='azure')
     background_.grid(row=0, column=0, rowspan=2)
+    
+    style = ttk.Style()   #
+    style.configure('TButton', font =
+                ('Arial', 20, 'bold'),
+                foreground = 'black',
+                background = 'black')
 
-    start_button = Button(root, text="Start", command=start)
-    info_label = Label(root, text="Kui värv muutub punaseks, vajuta nuppu", bg='white')
+    start_button = Button(root, text="Start!", command=start, font =
+            ('Arial', 20, 'bold'),
+            foreground = 'black'))#
+    info_label = Label(root, text="Kui värv muutub punaseks, vajuta nuppu", bg='azure', font = ('Arial', 13, 'bold')
     start_button.grid(row=0, column=0, padx=200, pady=100)
     info_label.grid(row=1, column=0, pady=10)
 
@@ -206,6 +216,7 @@ def run_verbal():
     f.close()
         
     root = Tk()
+    root.configure(bg = 'azure')
     root.resizable(width=False, height=False)
 
     def game():
@@ -214,11 +225,11 @@ def run_verbal():
         global random_word
         
         if_existing = randint(1, 10)
-        score_label = Label(root, text='Skoor: ' + str(score))
+        score_label = Label(root, text='Skoor: ' + str(score), font = ('Arial', 9, 'bold'), bg = 'azure')
         score_label.grid(row=3, column=0, columnspan=3)
         if if_existing < 5 and len(appeared_words) > 1:
             random_word = choice(appeared_words)
-            word_label = Label(root, text=random_word, relief='sunk', width=50, height=5, bd=5)
+            word_label = Label(root, text=random_word, relief='sunk', width=50, height=5, bd=5, font = ('Arial', 15, 'bold'))
             word_label.grid(row=1, column=0, padx=200, pady=50, columnspan=3)
         else:
             random_word = choice(words_str)
@@ -227,8 +238,8 @@ def run_verbal():
 
     def start():
         start_button.destroy()
-        button_new = Button(root, text='Uus sõna', command=lambda: button_press(1), pady=50, padx=50, bd=5)
-        button_exsist = Button(root, text='Nähtud', command=lambda: button_press(2), pady=50, padx=50, bd=5)
+        button_new = Button(root, text='Uus sõna', command=lambda: button_press(1), pady=50, padx=50, bd=5, font = ('Arial', 9, 'bold'))
+        button_exsist = Button(root, text='Nähtud', command=lambda: button_press(2), pady=50, padx=50, bd=5, font = ('Arial', 9, 'bold'))
 
         button_new.grid(row=2, column=0, pady=50)
         button_exsist.grid(row=2, column=2, pady=50)
@@ -247,6 +258,7 @@ def run_verbal():
             else:
                 root.destroy()
                 root.destroy()
+                print("Teie skoor oli:", str(score))
                 words = []
                 words_str = []
                 appeared_words = []
@@ -257,6 +269,7 @@ def run_verbal():
                 game()
             else:
                 root.destroy()
+                print("Teie skoor oli:", str(score))
                 words = []
                 words_str = []
                 appeared_words = []
@@ -264,7 +277,7 @@ def run_verbal():
                 
 
 
-    start_button = Button(root, text="Start", command=start, padx=50, pady=20)
+    start_button = Button(root, text="Start!", command=start, padx=50, pady=20, font = ('Arial', 20, 'bold'))
 
     start_button.grid(row=0, column=0, padx=100, pady=100)
 
@@ -274,6 +287,11 @@ def run_verbal():
 #=======================================================================================
 def run_game4():
     def start(root, difficulty):
+        s = ttk.Style()
+        s.configure('TButton', font =
+                ('Arial', 10, 'bold'),
+                foreground = 'black',
+                background = 'black')
         mainframe = ttk.Frame(root)
         mainframe.grid(column = 0, row = 0, sticky = (N, W, E, S))
         root.columnconfigure(0, weight = 1)
@@ -316,6 +334,7 @@ def run_game4():
                         child.destroy()
                     print('Incorrect!')
                     print("The correct was: " + string_of_numbers)
+                    print("Olete jõudnud", str(how_many_numbers) + ". levelile")
                     break
                 else:
                     print("Correct!")
@@ -338,20 +357,30 @@ def run_game4():
         root.rowconfigure(0, weight = 1)
         
         speed = IntVar()
-        label = ttk.Label(mainframe, text = "Choose your speed").grid(column = 0, row = 0, padx=10, pady=10)
+        label = ttk.Label(mainframe, text = "Choose your speed", font = ('Arial', 10, 'bold')).grid(column = 0, row = 0, padx=10, pady=10)
         
         s_2 = ttk.Radiobutton(mainframe, text='Easy', variable = speed, value = 3).grid(column = 0, row = 1, padx=30, pady=10)
         s_1 = ttk.Radiobutton(mainframe, text='Medium', variable = speed, value = 2).grid(column = 0, row = 3, padx=30, pady=10)
         s_half = ttk.Radiobutton(mainframe, text='Hard', variable = speed, value = 1).grid(column = 0, row = 5, padx=30, pady=10)
         go = ttk.Button(mainframe, text = "Let's go!", command = lambda: [mainframe.destroy(), start(root, speed.get())]).grid(column = 1, row = 1, rowspan = 4, padx=20, pady=10, sticky = 'sn')
-        
+        s = ttk.Style()
+        s.configure('TButton', font =
+                ('Arial', 8, 'bold'),
+                foreground = 'black',
+                background = 'black')
        
 
     frame = Tk()
     frame.title("Welcome!")
     frame.geometry("300x200")
     frame.eval('tk::PlaceWindow . center')
-
+    frame.configure(background = 'azure')
+    
+    style = ttk.Style()
+    style.configure('TButton', font =
+                ('Arial', 20, 'bold'),
+                foreground = 'black',
+                background = 'black')
 
     button = ttk.Button(frame, text = "Play!", command = play)
     button.place(x = 50, y = 100, width = 200, height = 80)
@@ -370,11 +399,12 @@ def run_game5():
         x, y = event.x, event.y
         if not(x in range(dict_of_coordinates[j][0] - 20, dict_of_coordinates[j][0] + 20) and y in range(dict_of_coordinates[j][1] - 20, dict_of_coordinates[j][1] + 20)):
            root.destroy()
+           print("Olete jõudnud", str(j) + ". levelile")
            return False
         id = canvas.find_withtag(CURRENT)[0]
         canvas.delete(str(id))
         root.update()
-        canvas.create_text(dict_of_coordinates[j][0], dict_of_coordinates[j][1], text = j)
+        canvas.create_text(dict_of_coordinates[j][0], dict_of_coordinates[j][1], text = j, font=("Arial", 20))
         j += 1
         if j - 1 == how_many_numbers:
             how_many_numbers += 1
@@ -391,7 +421,7 @@ def run_game5():
         j = 1
         root = Tk()
         root.title("Memory")
-        canvas = Canvas(root, width = 500, height = 500, background = "white")
+        canvas = Canvas(root, width = 500, height = 500, background = "azure", highlightthickness=5, highlightbackground="black")
         canvas.grid()
         canvas.bind('<1>', register_position_of_the_click)
         while True:
@@ -401,7 +431,7 @@ def run_game5():
                     new_y = randint(30, 470)
                     if (new_x, new_y) != (dict_of_coordinates.values()) :
                         break
-                canvas.create_text(new_x, new_y, text = i)
+                canvas.create_text(new_x, new_y, text = i, font=("Arial", 20))
                 dict_of_coordinates[i] = (new_x, new_y)
             break
         root.update()
@@ -409,7 +439,7 @@ def run_game5():
         canvas.delete("all")
             
         for i in range(1, how_many_numbers + 1):
-            canvas.create_text(dict_of_coordinates[i][0], dict_of_coordinates[i][1], text = 'X', tags = str(i))
+            canvas.create_text(dict_of_coordinates[i][0], dict_of_coordinates[i][1], text = 'X', tags = str(i), font=("Arial", 20))
             
      
 
@@ -422,6 +452,13 @@ def run_game5():
     mainframe.grid(column = 0, row = 0, sticky = (N, W, E, S))
     root.columnconfigure(0, weight = 1)
     root.rowconfigure(0, weight = 1)
+                       
+    style = ttk.Style()
+    style.configure('TButton', font =
+                ('Arial', 20, 'bold'),
+                foreground = 'black',
+                background = 'black')
+    style.configure("TFrame", background = 'azure', borderwidth = 'black')
 
     button_variable = IntVar()
     button = ttk.Button(mainframe, text = "Start!", command = lambda: [root.destroy(), button_variable.set(1), create_canvas()]).place(relx = 0.5, rely = 0.5, anchor = CENTER)
@@ -451,6 +488,7 @@ def run_game6():
                 if picture_id == id_table[i][j]:
                     if (j + 1, i + 1) not in active_images_set:
                         root.destroy()
+                        print("Olete jõudnud", str(size - 2) + ". levelile")
                     if (j + 1, i + 1) in active_images_set:
                         clicked_correctly.add((j + 1, i + 1))
                         y = j * (width / size) + weird_thing         #if some more difficulty wanted then swap x and y
