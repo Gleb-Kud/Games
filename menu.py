@@ -5,8 +5,7 @@ from random import randint, choice
 from random import *
 from time import time, sleep
 import time
-from PIL import Image, ImageTk
-from threading import Thread
+
 
 
 
@@ -77,7 +76,6 @@ def run_sequence():
         
 
     def start():
-        input_sequence = []
         button_start.destroy()
         game()
 
@@ -85,7 +83,7 @@ def run_sequence():
     def game():
         global sequence
         global score_lable
-        
+        input_sequence.clear()
         score_lable = Label(root, text="Level " + str(level), font = ('Arial', 9, 'bold'))
         score_lable.grid(row=4, column=0, columnspan=3)
 
