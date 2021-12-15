@@ -186,8 +186,8 @@ def run_reaction():
 
     start_button = Button(root, text="Start!", command=start, font =
             ('Arial', 20, 'bold'),
-            foreground = 'black'))#
-    info_label = Label(root, text="Kui värv muutub punaseks, vajuta nuppu", bg='azure', font = ('Arial', 13, 'bold')
+            foreground = 'black')#
+    info_label = Label(root, text="Kui värv muutub punaseks, vajuta nuppu", bg='azure', font = ('Arial', 13, 'bold'))
     start_button.grid(row=0, column=0, padx=200, pady=100)
     info_label.grid(row=1, column=0, pady=10)
 
