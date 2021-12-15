@@ -10,7 +10,13 @@ from threading import Thread
 
 
 mainframe = Tk()
+<<<<<<< HEAD
 mainframe.title('Gleb and Kevin Games')
+=======
+mainframe.title("Menu")
+mainframe.configure(bg = "azure")
+mainframe.configure(borderwidth = 20)
+>>>>>>> 8435e9d36d39aa9ac356d37995cd4f07841dfd42
 mainframe.resizable(width=False, height=False)
 #=======Sequence variables===============================================================================
 sequence = []
@@ -23,11 +29,25 @@ appeared_words = []
 score = 0
 #=======Reaction variables===============================================================================
 cond = True
+<<<<<<< HEAD
 cycles = 1
 #=======Chimp variable=====================================================================
+=======
+#=======4game===============================================================================
+style = ttk.Style()
+#=======5game===============================================================================
+>>>>>>> 8435e9d36d39aa9ac356d37995cd4f07841dfd42
 j = 1
 k = 0
+dict_of_coordinates = {}
 how_many_numbers = 1
+#=======6game===============================================================================
+width = 600
+height = 600
+clicked_correctly = set()
+not_active = (Image.open("pic1.png"))
+active = (Image.open("pic2.png"))
+size = 3
 #=====================================MÄNGUD=================================================
 
 def run_sequence():
@@ -198,7 +218,11 @@ def run_reaction():
     start_button = Button(root, text="Start!", command=start, font =
             ('Arial', 20, 'bold'),
             foreground = 'black')
+<<<<<<< HEAD
     info_label = Label(root, text="Kui värv muutub roheliseks, vajuta nuppu", bg='azure', font = ('Arial', 13, 'bold'))
+=======
+    info_label = Label(root, text="Kui värv muutub punaseks, vajuta nuppu", bg='azure', font = ('Arial', 13, 'bold'))
+>>>>>>> 8435e9d36d39aa9ac356d37995cd4f07841dfd42
     start_button.grid(row=0, column=0, padx=200, pady=100)
     info_label.grid(row=1, column=0, pady=10)
 
@@ -210,8 +234,13 @@ def run_reaction():
 
 def run_verbal():
 
+<<<<<<< HEAD
     mainframe.withdraw()
     f = open("lemmad.txt", mode='rb')
+=======
+
+    f = open("sonad.txt", mode='rb')
+>>>>>>> 8435e9d36d39aa9ac356d37995cd4f07841dfd42
 
     # Siin tekkis mingi jama, et ei saanud encoding='utf-8'-ga lugeda failist, niiet tegin nii
     # loeb bytes objektidena wordsi ja siis sõelub sealt ebasobilikud sõnad välja
@@ -298,8 +327,13 @@ def run_verbal():
     root.mainloop()
     
 #=======================================================================================
+<<<<<<< HEAD
 def run_number():
     
+=======
+def run_game4():
+    global style
+>>>>>>> 8435e9d36d39aa9ac356d37995cd4f07841dfd42
     def start(root, difficulty):
         s = ttk.Style()
         s.configure('TButton', font =
@@ -310,6 +344,7 @@ def run_number():
         mainframe.grid(column = 0, row = 0, sticky = (N, W, E, S))
         root.columnconfigure(0, weight = 1)
         root.rowconfigure(0, weight = 1)
+        
         
         time_left = 3
         while time_left > 0:
@@ -370,6 +405,7 @@ def run_number():
         root.columnconfigure(0, weight = 1)
         root.rowconfigure(0, weight = 1)
         
+        
         speed = IntVar()
         label = ttk.Label(mainframe, text = "Choose your speed", font = ('Arial', 10, 'bold')).grid(column = 0, row = 0, padx=10, pady=10)
         
@@ -389,47 +425,54 @@ def run_number():
     frame.geometry("300x200")
     frame.eval('tk::PlaceWindow . center')
     frame.configure(background = 'azure')
-    
-    style = ttk.Style()
+    #style = ttk.Style()
     style.configure('TButton', font =
                 ('Arial', 20, 'bold'),
                 foreground = 'black',
                 background = 'black')
 
+
+
     button = ttk.Button(frame, text = "Play!", command = play)
     button.place(x = 50, y = 100, width = 200, height = 80)
-    frame.mainloop()  
+    frame.mainloop() 
 
 #=======================================================================================
 
-def run_chimp():
-    global j
+def run_game5():
+    global j 
     global k
-    global how_many_numbers
-    j = 1
-    k = 0
-    how_many_numbers = 1
+
 
     def register_position_of_the_click(event):
-        x, y = event.x, event.y
-        if not(x in range(dict_of_coordinates[j][0] - 20, dict_of_coordinates[j][0] + 20) and y in range(dict_of_coordinates[j][1] - 20, dict_of_coordinates[j][1] + 20)):
-           root.destroy()
-           print("Olete jõudnud", str(j) + ". levelile")
-           return False
-        id = canvas.find_withtag(CURRENT)[0]
-        canvas.delete(str(id))
-        root.update()
-        canvas.create_text(dict_of_coordinates[j][0], dict_of_coordinates[j][1], text = j, font=("Arial", 20))
-        j += 1
-        if j - 1 == how_many_numbers:
-            how_many_numbers += 1
-            root.destroy()
-            create_canvas()
+        try:
+            global k
+            global j
+            global how_many_numbers
+            x, y = event.x, event.y
+            if not(x in range(dict_of_coordinates[j][0] - 20, dict_of_coordinates[j][0] + 20) and y in range(dict_of_coordinates[j][1] - 20, dict_of_coordinates[j][1] + 20)):
+                root.destroy()
+                print("Olete jõudnud", str(j) + ". levelile")
+                return False
+            id = canvas.find_withtag(CURRENT)[0]
+            canvas.delete(str(id))
+            root.update()
+            canvas.create_text(dict_of_coordinates[j][0], dict_of_coordinates[j][1], text = j, font=("Arial", 20))
+            j += 1
+            if j - 1 == how_many_numbers:
+                how_many_numbers += 1
+                root.destroy()
+                create_canvas()
+        except:
+            pass
 
-    dict_of_coordinates = {}
-    
+    global dict_of_coordinates
+    global how_many_numbers
 
     def create_canvas():
+        global j
+        global root
+        global canvas
         j = 1
         root = Tk()
         root.title("Memory")
@@ -449,28 +492,30 @@ def run_chimp():
         root.update()
         time.sleep(5)
         canvas.delete("all")
-            
+                
         for i in range(1, how_many_numbers + 1):
             canvas.create_text(dict_of_coordinates[i][0], dict_of_coordinates[i][1], text = 'X', tags = str(i), font=("Arial", 20))
-            
-     
+                
+         
 
     root = Tk()
     root.title("Memory")
     root.geometry("300x200")
+        
 
 
     mainframe = Frame(root)
     mainframe.grid(column = 0, row = 0, sticky = (N, W, E, S))
     root.columnconfigure(0, weight = 1)
     root.rowconfigure(0, weight = 1)
-                       
+        
     style = ttk.Style()
     style.configure('TButton', font =
                 ('Arial', 20, 'bold'),
                 foreground = 'black',
                 background = 'black')
     style.configure("TFrame", background = 'azure', borderwidth = 'black')
+
 
     button_variable = IntVar()
     button = ttk.Button(mainframe, text = "Start!", command = lambda: [root.destroy(), button_variable.set(1), create_canvas()]).place(relx = 0.5, rely = 0.5, anchor = CENTER)
@@ -482,12 +527,16 @@ def run_chimp():
     
 #=======================================================================================
 
-def run_visual():
-    width = 600
-    height = 600
+def run_game6():
+    global width
+    global height
+    global not_active 
+    global active 
+
+    global size 
 
 
-    clicked_correctly = set()
+    global clicked_correctly
 
     def click(event):
         global size
@@ -577,11 +626,7 @@ def run_visual():
     root.title("Squares")
     canvas = Canvas(root, width = 600, height = 600, background = "white")
     canvas.grid()
-
-    not_active = (Image.open("pic1.png"))
-    active = (Image.open("pic2.png"))
-
-    size = 3
+    
     canvas_function()
     root.mainloop()   
 
@@ -592,13 +637,13 @@ def exit_():
 
 #=======================================================================================    
 
-button1 = Button(mainframe, text='Jada mälu', width=15, command=run_sequence)
-button2 = Button(mainframe, text='Reaktsioonid', width=15, command=run_reaction)
-button3 = Button(mainframe, text='Sõnaline mälu', width=15, command=run_verbal)
-button4 = Button(mainframe, text='Numbriline mälu', width=15, command=run_number)
-button5 = Button(mainframe, text='Ahvi test', width=15, command=run_chimp)
-button6 = Button(mainframe, text='Visuaalne mälu', width=15, command=run_visual)
-button_exit = Button(mainframe, text='Exit', width=15, command=exit_)
+button1 = Button(mainframe, text='Jada mälu', font=("Arial", 30), width=15, command=run_sequence)
+button2 = Button(mainframe, text='Reaktsioonid', font=("Arial", 30), width=15, command=run_reaction)
+button3 = Button(mainframe, text='Sõnaline mälu', font=("Arial", 30),width=15, command=run_verbal)
+button4 = Button(mainframe, text='Numbriline mälu', width=15, font=("Arial", 30),command=run_game4)
+button5 = Button(mainframe, text='Jada mälu 2', width=15, font=("Arial", 30),command=run_game5)
+button6 = Button(mainframe, text='Visuaalne mälu', width=15, font=("Arial", 30),command=run_game6)
+button_exit = Button(mainframe, text='Exit', width=15, font=("Arial", 30),command=exit_)
 
 
 button1.grid(row=0, column=0, padx=10, pady=10)
