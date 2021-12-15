@@ -1,5 +1,6 @@
 from tkinter import *
 from random import randint
+import subprocess
 
 
 root = Tk()
@@ -8,7 +9,8 @@ sequence = []
 input_sequence = []
 level = 1
 
-
+def exit_():
+    root.destroy()
 
 def button_press(input_button):
     global input_sequence
@@ -34,7 +36,7 @@ def button_press(input_button):
             root.update()
             end_label = Label(root, text="Vale järjekord", padx=100, pady=10)
             end_label.grid(row=0, column=0)
-            exit_button = Button(root, text="Exit", padx=10, pady=10, command=root.destroy)
+            exit_button = Button(root, text="Exit", padx=10, pady=10, command=exit_)
             exit_button.grid(row=1, column=0)
     
 
