@@ -10,8 +10,9 @@ from threading import Thread
 
 
 mainframe = Tk()
+mainframe.title('Gleb and Kevin Games')
 mainframe.resizable(width=False, height=False)
-#=======Reaction variables===============================================================================
+#=======Sequence variables===============================================================================
 sequence = []
 input_sequence = []
 level = 1
@@ -22,6 +23,7 @@ appeared_words = []
 score = 0
 #=======Reaction variables===============================================================================
 cond = True
+cycles = 1
 #=======Chimp variable=====================================================================
 j = 1
 k = 0
@@ -40,6 +42,7 @@ def run_sequence():
     def button_press(input_button):
         global input_sequence
         global level
+        global sequence
 
         input_sequence.append(input_button)
         if len(input_sequence) == len(sequence):
@@ -48,6 +51,7 @@ def run_sequence():
                 level += 1
                 game()
             else:
+                score_lable = Label(root, text="Level " + str(level), font = ('Arial', 9, 'bold'))
                 button1.destroy()
                 button2.destroy()
                 button3.destroy()
@@ -65,6 +69,8 @@ def run_sequence():
                 exit_button = Button(root, text="Menu", padx=10, pady=10, command=exit_, font = ('Arial', 9, 'bold'))
                 exit_button.grid(row=1, column=0)
                 level = 1
+                sequence = []
+                input_sequence = []
         
 
     def start():
@@ -129,6 +135,7 @@ def run_sequence():
     
 def run_reaction():
     
+    mainframe.withdraw()
     root = Tk()
     root.resizable(width=False, height=False)
 
@@ -141,7 +148,7 @@ def run_reaction():
         background_.configure(bg="#fa5c5c")
         root.update()
         reaction_button = Button(root, text="", command=react, width= 10)
-        reaction_button.grid(row=0, column=0, padx=200, pady=100)
+        reaction_button.grid(row=0, column=0, padx=100, pady=100)
         root.update()
         random_wait = randint(3, 8)
         sleep(random_wait)
@@ -190,8 +197,8 @@ def run_reaction():
 
     start_button = Button(root, text="Start!", command=start, font =
             ('Arial', 20, 'bold'),
-            foreground = 'black'))#
-    info_label = Label(root, text="Kui värv muutub punaseks, vajuta nuppu", bg='azure', font = ('Arial', 13, 'bold')
+            foreground = 'black')
+    info_label = Label(root, text="Kui värv muutub roheliseks, vajuta nuppu", bg='azure', font = ('Arial', 13, 'bold'))
     start_button.grid(row=0, column=0, padx=200, pady=100)
     info_label.grid(row=1, column=0, pady=10)
 
@@ -203,7 +210,7 @@ def run_reaction():
 
 def run_verbal():
 
-
+    mainframe.withdraw()
     f = open("lemmad.txt", mode='rb')
 
     # Siin tekkis mingi jama, et ei saanud encoding='utf-8'-ga lugeda failist, niiet tegin nii
@@ -237,7 +244,7 @@ def run_verbal():
             word_label.grid(row=1, column=0, padx=200, pady=50, columnspan=3)
         else:
             random_word = choice(words_str)
-            word_label = Label(root, text=random_word, relief='sunk', width=50, height=5, bd=5)
+            word_label = Label(root, text=random_word, relief='sunk', width=50, height=5, bd=5, font = ('Arial', 15, 'bold'))
             word_label.grid(row=1, column=0, padx=200, pady=50, columnspan=3)
 
     def start():
@@ -260,26 +267,28 @@ def run_verbal():
                 score += 1
                 game()
             else:
-                root.destroy()
-                root.destroy()
                 print("Teie skoor oli:", str(score))
+                score = 0
                 words = []
                 words_str = []
                 appeared_words = []
-                score = 0
+                root.destroy()
+                mainframe.deiconify()
+
+                
         elif mode == 2:
             if random_word in appeared_words:
                 score += 1
                 game()
             else:
-                root.destroy()
                 print("Teie skoor oli:", str(score))
+                score = 0
                 words = []
                 words_str = []
                 appeared_words = []
-                score = 0
-                
-
+                root.destroy()
+                mainframe.deiconify()
+               
 
     start_button = Button(root, text="Start!", command=start, padx=50, pady=20, font = ('Arial', 20, 'bold'))
 
@@ -290,6 +299,7 @@ def run_verbal():
     
 #=======================================================================================
 def run_number():
+    
     def start(root, difficulty):
         s = ttk.Style()
         s.configure('TButton', font =
